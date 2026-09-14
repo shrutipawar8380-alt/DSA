@@ -9,6 +9,7 @@ struct node
 };
 struct node *START = NULL,*START2 = NULL;
 
+
 void insert2()
 {
     int value;
