@@ -71,8 +71,8 @@ void display1()
 
 void copyList()
 {
-    struct node *p,*t;
-   
+    struct node *p,*t,*last = NULL;
+
     if(START==NULL)
     {
         printf("The list is Empty");
@@ -80,16 +80,25 @@ void copyList()
     else
     {
         t=START;
-        START1=p;
+        START1=NULL;
         while(t!=NULL)
         {
-            p->data=t->data;
-            t=t->next;
-            p=p->next;
-        }
-        
-        
+            p=malloc(sizeof(struct node));
             
+            p->data = t->data;
+            p->next = NULL;
+            if(START1 == NULL)
+            {
+                START1 = p;
+            }
+            else
+            {
+                last->next = p;
+            }
+
+            last = p;
+            t = t->next;
+        }
     }
 }
 

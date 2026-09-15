@@ -71,7 +71,7 @@ void display()
     }
 }
 
-void cpy_display()
+void display1()
 {
     struct node *t;
     if(START1== NULL)
@@ -81,7 +81,7 @@ void cpy_display()
     else
     {
         t=START1;
-        printf("\nThe Linked List is : ");
+        printf("\nThe  Copied Linked List is : ");
         while(t!=NULL)
         {
             printf("%d\t",t->data);
@@ -90,6 +90,38 @@ void cpy_display()
     }
 }
 
+void copyList()
+{
+    struct node *p,*t,*last = NULL;
+
+    if(START==NULL)
+    {
+        printf("The list is Empty");
+    }
+    else
+    {
+        t=START;
+        START1=NULL;
+        while(t!=NULL)
+        {
+            p=malloc(sizeof(struct node));
+            
+            p->data = t->data;
+            p->next = NULL;
+            if(START1 == NULL)
+            {
+                START1 = p;
+            }
+            else
+            {
+                last->next = p;
+            }
+
+            last = p;
+            t = t->next;
+        }
+    }
+}
 void reverse()
 {
     struct node *p,*q,*m;
@@ -129,6 +161,43 @@ void reverse()
     }
 }
 
+void palindrome()
+{
+    int c=0;
+    struct node *p,*t;
+    if(START==NULL)
+    {
+        printf("The Linked List Empty..!!");
+    }   
+    else
+    {
+        copyList();
+        reverse();
+        t=START;
+        p=START1;
+        while(t!=NULL)
+        {
+            if(t->data != p->data)
+            {
+                c++;
+            }
+            p=p->next;
+            t=t->next;
+
+        }
+        if(c==0)
+        {
+            printf("\nThe Linked List is Palindrome ");
+        }
+        else
+        {
+             printf("\nThe Linked List is NOT Palindrome ");
+        }
+    }
+
+
+}
+
 
 int main()
 {
@@ -140,10 +209,6 @@ int main()
         insert();
     }
     display();
-    printf("\n THe Reverse LIst is :");
-    //reverse();
-    copy();
-    cpy_display();
-
+    palindrome();
 
 }

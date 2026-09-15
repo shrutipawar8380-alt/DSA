@@ -7,7 +7,7 @@ struct node
     int data;
     struct node *next;
 };
-struct node *START = NULL,*START2 = NULL;
+struct node *START = NULL,*START1 = NULL,*START2 = NULL;
 
 
 void insert2()
@@ -456,6 +456,130 @@ void perfect()
 
      }
 }
+
+void display1()
+{
+    struct node *t;
+    if(START1== NULL)
+    {
+        printf("The Linked List is Empty");
+    }
+    else
+    {
+        t=START1;
+        printf("\nThe  Copied Linked List is : ");
+        while(t!=NULL)
+        {
+            printf("%d\t",t->data);
+            t=t->next;
+        }
+    }
+}
+
+void copyList()
+{
+    struct node *p,*t,*last = NULL;
+
+    if(START==NULL)
+    {
+        printf("The list is Empty");
+    }
+    else
+    {
+        t=START;
+        START1=NULL;
+        while(t!=NULL)
+        {
+            p=malloc(sizeof(struct node));
+            
+            p->data = t->data;
+            p->next = NULL;
+            if(START1 == NULL)
+            {
+                START1 = p;
+            }
+            else
+            {
+                last->next = p;
+            }
+
+            last = p;
+            t = t->next;
+        }
+    }
+}
+
+void palindrome()
+{
+    int c=0;
+    struct node *p,*t;
+    if(START==NULL)
+    {
+        printf("The Linked List Empty..!!");
+    }   
+    else
+    {
+        copyList();
+        reverse();
+        t=START;
+        p=START1;
+        while(t!=NULL)
+        {
+            if(t->data != p->data)
+            {
+                c++;
+            }
+            p=p->next;
+            t=t->next;
+
+        }
+        if(c==0)
+        {
+            printf("\nThe Linked List is Palindrome ");
+        }
+        else
+        {
+             printf("\nThe Linked List is NOT Palindrome ");
+        }
+    }
+
+
+}
+
+void armstrong()
+{
+    struct node *p;
+    int n;
+    if(START==NULL)
+    {
+        printf("Linked List is Empty");
+    }
+    else
+    {
+        p=START;
+        while(p!=NULL)
+        {
+            int r,sum=0,temp;
+            temp=p->data;
+            n=p->data;
+            while(n>0)
+            {
+                r=n%10;
+                sum=sum+(r*r*r);
+                n=n/10;
+
+            }
+            if(temp==sum)
+            {
+                printf("%d\t",p->data);
+            }
+            p=p->next;
+
+        }
+    }
+
+}
+
 int main()
 {
     int i,size,ch,n2;
@@ -560,7 +684,8 @@ int main()
                         printf("\n(J). Find Perfect Nodes");
                         printf("\n(K). Find Palindrome Nodes"); 
                         printf("\n(L). Copy the Linked List");
-                        printf("\n(M). Exit");
+                        printf("\n(M). Find Armstrong Nodes");
+                        printf("\n(N). Exit");
                         printf("\nEnter your choice :");
                         scanf(" %c",&choice);
                         switch (choice)
@@ -618,14 +743,19 @@ int main()
                                         break;
 
                             case 'K':
-                                        //palindrome();
+                                        palindrome();
                                         break;
 
                             case 'L':
-                                        //copyList();
+                                        copyList();
+                                        display1();
+                                        break;
+
+                            case 'M':
+                                        armstrong();
                                         break;
                             
-                            case 'M': 
+                            case 'N': 
                                         goto main_menu;
                                         break;
                         }

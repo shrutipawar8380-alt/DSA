@@ -50,6 +50,7 @@ void display()
 void armstrong()
 {
     struct node *p;
+    int n;
     if(START==NULL)
     {
         printf("Linked List is Empty");
@@ -61,11 +62,12 @@ void armstrong()
         {
             int r,sum=0,temp;
             temp=p->data;
-            while(p->data>0)
+            n=p->data;
+            while(n>0)
             {
-                r=p->data%10;
+                r=n%10;
                 sum=sum+(r*r*r);
-                p->data=p->data/10;
+                n=n/10;
 
             }
             if(temp==sum)
