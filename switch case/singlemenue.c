@@ -48,7 +48,6 @@ void deleteFirst()
     }
 }
 
-
 void display()
 {
     struct node *t;
@@ -67,8 +66,6 @@ void display()
         }
     }
 }
-
-
 
 void countNodes()
 {

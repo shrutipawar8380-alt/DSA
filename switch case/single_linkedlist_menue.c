@@ -203,7 +203,6 @@ void display()
     else
     {
         p=START;
-        printf("The give Linked list is :");
         while(p != NULL)
         {
             printf("%d\t",p->data);
@@ -580,6 +579,86 @@ void armstrong()
 
 }
 
+void bubbleSort()
+{
+    struct node *p,*t;
+    int temp;
+    if(START==NULL)
+    {
+        printf("Linked List is Empty");
+    }
+    else
+    {
+        t=START;
+        while(t!=NULL)
+        {
+            p=START;
+            while(p->next!=NULL)
+            {
+                if(p->data > p->next->data)
+                {
+                    temp = p->data;
+                    p->data = p->next->data;
+                    p->next->data = temp;
+                }
+                p=p->next;
+
+            }
+            t = t->next;
+        }
+        printf("\nThe sorted linked list is :");
+        display();
+
+    }
+}
+
+void selctionSort()
+{
+    struct node *p,*t,*min;
+    int temp;
+    if(START==NULL)
+    {
+        printf("Linked List is Empty");
+    }
+    else
+    {
+        t=START;
+        while(t!=NULL)
+        {
+            min=t;
+            p=t->next;
+            while(p!=NULL)
+            {
+                if(min->data > p->data)
+                {
+                    min = p;
+                }
+                p=p->next;
+
+            }
+            temp = t->data;
+            t->data = min->data;
+            min->data = temp;
+            t = t->next;
+        }
+        printf("\nThe sorted linked list is :");
+        display();
+    }
+}
+
+
+void insertionSort()
+{
+
+
+
+
+
+
+
+
+
+}
 int main()
 {
     int i,size,ch,n2;
@@ -685,7 +764,9 @@ int main()
                         printf("\n(K). Find Palindrome Nodes"); 
                         printf("\n(L). Copy the Linked List");
                         printf("\n(M). Find Armstrong Nodes");
-                        printf("\n(N). Exit");
+                        printf("\n(N). Bubble Sort of the Linked List");
+                        printf("\n(O). Selection Sort of the Linked List");
+                        printf("\n(P). Exit");
                         printf("\nEnter your choice :");
                         scanf(" %c",&choice);
                         switch (choice)
@@ -754,8 +835,20 @@ int main()
                             case 'M':
                                         armstrong();
                                         break;
+
+                            case 'N':
+                                        bubbleSort();
+                                        break;
+
+                            case 'O':
+                                        selctionSort();
+                                        break;
+
+                            case 'P':
+                                        insertionSort();
+                                        break;
                             
-                            case 'N': 
+                            case 'Q': 
                                         goto main_menu;
                                         break;
                         }

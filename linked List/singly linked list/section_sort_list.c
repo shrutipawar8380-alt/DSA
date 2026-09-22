@@ -38,7 +38,7 @@ void display()
     else
     {
         t=START;
-       
+        printf("\nThe Linked List is : ");
         while(t!=NULL)
         {
             printf("%d\t",t->data);
@@ -47,10 +47,10 @@ void display()
     }
 }
 
-void bubblesort()
+void selctionSort()
 {
     struct node *p,*t;
-    int temp;
+    int temp,min;
     if(START==NULL)
     {
         printf("Linked List is Empty");
@@ -60,26 +60,28 @@ void bubblesort()
         t=START;
         while(t!=NULL)
         {
-            p=START;
-            while(p->next!=NULL)
+            min=t->data;
+            p=t->next;
+            while(p!=NULL)
             {
-                if(p->data > p->next->data)
+                if(min > p->data)
                 {
-                    temp = p->data;
-                    p->data = p->next->data;
-                    p->next->data = temp;
+                    min = p->data;
                 }
                 p=p->next;
 
             }
+            temp = t->data;
+            t->data = min;
+            min = temp;
             t = t->next;
-        }
-        printf("\nThe sorted linked list is :");
-        display();
-
     }
+    printf("\nThe sorted linked list is :");
+    display();
 }
+    
 
+}
 int main()
 {
     int i,size;
@@ -93,7 +95,9 @@ int main()
 
     printf("The linked List is :");
     display();
-    bubblesort();
+    selctionSort();
+    return 0;
+   
 }
 
 
