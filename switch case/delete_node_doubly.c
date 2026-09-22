@@ -9,31 +9,6 @@ struct node
 
 struct node *START=NULL;
 
-void insertFirst()
-{
-    int value;
-    struct node *p;
-    p=malloc(sizeof(struct node ));
-    printf("Enter the node data :");
-    scanf("%d",&value);
-    p->data=value;
-    p->next=NULL;
-    p->prev=NULL;
-
-    if(START == NULL)
-    {
-        START = p;
-    }
-    else
-    {
-        p->next = START;
-        START->prev = p;
-        START = p;  
-        
-        
-    }
-}
-
 void insertLast()
 {
     int value;
@@ -60,45 +35,58 @@ void insertLast()
         p->prev = t;
     }
 }
-void insertAny()
-{
-    int value,pos,i=1;
-    struct node *p,*t;
-    p=malloc(sizeof(struct node ));
-    printf("Enter the node data :");
-    scanf("%d",&value);
-     p->data=value;
-     p->next=NULL;
-     p->prev=NULL;
 
-     if(START == NULL)
-     {
-        START = p;
-     }
-     else
-     {
+ void deleteFirst()
+{
+    struct node *t;
+    if(START == NULL)
+    {
+        printf("The Linked List is Empty");
+    }
+    else
+    {
         t = START;
-        printf("Enter the position  to insert node :");
-        scanf("%d",&pos);
-        if(pos == 1)
+        START = t->next;
+        t->next = NULL;
+        START->prev = NULL;
+        free(t);
+    }
+}
+
+void delete_last()
+{
+    struct node *t=START;
+    if (START==NULL)
+    {
+        printf("Linked list is empty");
+    }
+    else
+    {
+        if(t->prev==NULL && t->next==NULL)//check for single node 
         {
-            p->next=START;
-            START->prev=p;
-            START=p;
+            printf("Delete node data:%d\n",t->data);
+            free(t);
+            START=NULL;
         }
         else
         {
-            while(i<pos-1 && t->next != NULL)
+            while(t->next!=NULL)
             {
-                t = t->next;
-                i++;
+                t=t->next;
             }
-            p->next = t->next;
-            t->next->prev = p;
-            t->next = p;
-            p->prev = t;
+            printf("Delete node data:%d\n",t->data);
+            t->prev->next=NULL;//t->prev goes to sec.last node  and then sec.last node's next will become NULL
+            free(t);
         }
     }
+    
+}
+
+void deleteAny()
+{
+
+
+    
 }
 
 
@@ -139,20 +127,20 @@ int main()
 
     while(1)
     {
-        printf("\n1.Insert at first\n2.Insert at any\n3.Insert at last\n4.DISPLAY\n5.Exit");
+        printf("\n1.Delete at first\n2.Delete at any\n3.Delete at last\n4.DISPLAY\n5.Exit");
         printf("\nEnter your choice:");
         scanf("%d",&ch);
 
         switch(ch)
         {
             case 1:
-                    insertFirst();
+                    deleteFirst();
                     break;
             case 2:
-                    insertAny();
+                    //deleteAny();
                     break;
             case 3:
-                     insertLast();
+                     deleteLast();
                      break;
             case 4:
                      display();

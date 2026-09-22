@@ -76,12 +76,14 @@ void insertFirst()
 
 void insertAny()
 {
-    int value,n,c=1;
     struct node *p,*t;
-    p=malloc(sizeof(struct node));
-    printf("Enter the position to insert node :");
+    int count=0,value,n;
+
+    printf("Enter the positin to insert the node :");
     scanf("%d",&n);
-    printf("Enter the data to insert :");
+
+    p=malloc(sizeof(struct node));
+    printf("Enter the node data :");
     scanf("%d",&value);
     p->data=value;
     p->next=NULL;
@@ -90,16 +92,26 @@ void insertAny()
     {
         START=p;
     }
-    else 
+    else
     {
         t=START;
-        while(c<n-1)
+        while(t != NULL)
         {
-            c++;
+            count++;
+            if(n==1)
+            {
+                p->next=START;
+                START=p;
+            }
+            if(count == (n-1))
+            {
+                p->next = t->next;
+                t->next = p;
+                break;
+
+            }
             t=t->next;
         }
-        p->next=t->next;
-        t->next=p;
     }
 }
 
@@ -699,7 +711,7 @@ int main()
                                         break;
 
                             case 'B':
-                                        //insertAny();
+                                        insertAny();
                                         break;
 
                             case 'C':
